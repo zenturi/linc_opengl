@@ -2773,6 +2773,8 @@ extern class GL {
 
 	inline static var GL_TRANSFORM_FEEDBACK_STREAM_OVERFLOW = 0x82ED;
 
+	inline static var GL_UNSIGNED_INT64_ARB = 0x140F;
+
 
 	inline static function glCullFace(_mode : Int) : Void
 		{ return untyped __cpp__("glCullFace({0})", _mode); }
@@ -4870,5 +4872,53 @@ extern class GL {
 
 	inline static function glPolygonOffsetClamp(_factor : Float, _units : Float, _clamp : Float) : Void
 		{ return untyped __cpp__("glPolygonOffsetClamp({0}, {1}, {2})", _factor, _units, _clamp); }
+
+	inline static function glGetTextureHandleARB(_texture : Int) : cpp.UInt64
+		{ return untyped __cpp__("glGetTextureHandleARB({0})", _texture); }
+
+	inline static function glGetTextureSamplerHandleARB(_texture : Int, _sampler : Int) : cpp.UInt64
+		{ return untyped __cpp__("glGetTextureSamplerHandleARB({0}, {1})", _texture, _sampler); }
+
+	inline static function glMakeTextureHandleResidentARB(_handle : cpp.UInt64) : Void
+		{ return untyped __cpp__("glMakeTextureHandleResidentARB({0})", _handle); }
+
+	inline static function glMakeTextureHandleNonResidentARB(_handle : cpp.UInt64) : Void
+		{ return untyped __cpp__("glMakeTextureHandleNonResidentARB({0})", _handle); }
+
+	inline static function glGetImageHandleARB(_texture : Int, _level : Int, _layered : Bool, _layer : Int, _format : Int) : cpp.UInt64
+		{ return untyped __cpp__("glGetImageHandleARB({0}, {1}, {2}, {3}, {4})", _texture, _level, _layered, _layer, _format); }
+
+	inline static function glMakeImageHandleResidentARB(_handle : cpp.UInt64, _access : Int) : Void
+		{ return untyped __cpp__("glMakeImageHandleResidentARB({0}, {1})", _handle, _access); }
+
+	inline static function glMakeImageHandleNonResidentARB(_handle : cpp.UInt64) : Void
+		{ return untyped __cpp__("glMakeImageHandleNonResidentARB({0})", _handle); }
+
+	inline static function glUniformHandleui64ARB(_location : Int, _value : cpp.UInt64) : Void
+		{ return untyped __cpp__("glUniformHandleui64ARB({0}, {1})", _location, _value); }
+
+	inline static function glUniformHandleui64vARB(_location : Int, _count : Int, _value : Array<cpp.UInt64>) : Void
+		{ return untyped __cpp__("glUniformHandleui64vARB({0}, {1}, (const GLuint64 *)&({2}[0]))", _location, _count, _value); }
+
+	inline static function glProgramUniformHandleui64ARB(_program : Int, _location : Int, _value : cpp.UInt64) : Void
+		{ return untyped __cpp__("glProgramUniformHandleui64ARB({0}, {1}, {2})", _program, _location, _value); }
+
+	inline static function glProgramUniformHandleui64vARB(_program : Int, _location : Int, _count : Int, _values : Array<cpp.UInt64>) : Void
+		{ return untyped __cpp__("glProgramUniformHandleui64vARB({0}, {1}, {2}, (const GLuint64 *)&({3}[0]))", _program, _location, _count, _values); }
+
+	inline static function glIsTextureHandleResidentARB(_handle : cpp.UInt64) : Bool
+		{ return untyped __cpp__("glIsTextureHandleResidentARB({0})", _handle); }
+
+	inline static function glIsImageHandleResidentARB(_handle : cpp.UInt64) : Bool
+		{ return untyped __cpp__("glIsImageHandleResidentARB({0})", _handle); }
+
+	inline static function glVertexAttribL1ui64ARB(_index : Int, _x : cpp.UInt64) : Void
+		{ return untyped __cpp__("glVertexAttribL1ui64ARB({0}, {1})", _index, _x); }
+
+	inline static function glVertexAttribL1ui64vARB(_index : Int, _v : Array<cpp.UInt64>) : Void
+		{ return untyped __cpp__("glVertexAttribL1ui64vARB({0}, (const GLuint64EXT *)&({1}[0]))", _index, _v); }
+
+	inline static function glGetVertexAttribLui64vARB(_index : Int, _pname : Int, _params : Array<cpp.UInt64>) : Void
+		{ return untyped __cpp__("glGetVertexAttribLui64vARB({0}, {1}, (GLuint64EXT *)&({2}[0]))", _index, _pname, _params); }
 
 }
