@@ -12,20 +12,8 @@ This is a [linc](http://snowkit.github.io/linc/) library.
 
 See LICENSE.md
 
-## Important notes
+**What does this library do exactly**
 
-This library is a work in progress!   
-This readme covers the important things to note when using the library.
-
-**Please note**    
-That finding and reporting issues is quite important to the library being great to use - it is a collective effort. Issue reports are crucial.
-
-**Missing endpoints**   
-There are some endpoints that aren't generated yet (search for TODO inside of GL.hx for examples). These are currently mostly related to obscure extensions or C++ pointer related. 
-
-I will continue to map the pointer based functions soon, but there definitely will be some API endpoints that aren't available until then. An example is glMapBuffer which returns `void*`, expressing this in Haxe is not difficult, just that care should be taken for these type of functions more specifically than the rest.
-
-**What does this library do exactly**   
 This library is specifically about access.
 
 **Does do**   
@@ -60,9 +48,7 @@ if(res != GLEW.OK) {
 }
 ```
 
-
-
-#### GL 1.1 - GL 4.5 API
+#### GL 1.1 - GL 4.6 API
 
 **About**
 
@@ -72,6 +58,16 @@ The `opengl.GL` API is the entirety of the OpenGL API and extensions as defined 
 
 The usage pattern here is for consistency with C++ and similar code.
 This import pattern below makes many OpenGL examples around able to be copy pasted from C++ tutorials with only minor changes.
+
+The default GL.hx includes bindings for a OpenGL 4.6 core profile. If you want a different profile, or non core functions you will need to generate your own bindings. This can be easily done by running `haxe --run Main [ args ]` in the gen directory. The arguments to pass are provided below.
+
+arg0 - api type   - OpenGL api type to build for. 'gl', 'gles1', 'gles2'
+arg1 - major      - Major version to request.
+arg2 - minor      - Minor version to request.
+arg3 - profile    - profile to request. 'core', 'compatibility'. Not required for gles, defaults to compatibility.
+args - extensions - Any other args are assumed to be GL extension names. These extensions will be included in the produced externs.
+
+e.g. `haxe --run Main gl 4 4 core GL_ARB_direct_state_access GL_ARB_sparse_texture`
 
 **Import**
 
@@ -122,20 +118,3 @@ linc OpenGL WebGL API:
 
 To import the WebGL spec API, use `import opengl.WebGL as GL;`   
 The `as` is optional, but will make much of the code easy to copy paste and share across actual WebGL code.
-
-#### Future
-
-**Other GL API's**
-
-ES 2.x and ES 3.x API imports are on the way.   
-The goal (as with all linc libraries) is to provide access to the API's, not to try and solve a globally portable GL API or anything. 
-
-That means the GL1.1~4.5 API will remain generated from GLEW for the time being, and other API's will exist alongside it for your application to use at their discretion - much like with regular OpenGL includes, you would selectively include the appropriate one for the build profile and call the functions that make sense when you've done so.
-
-**New generator**
-
-The current generator is a bit messy but it does the job to get a usable API which is enough for now and validate the approach. I already have a newer, cleaner generator well under way. It includes the ability to read the API (like from ES2.0 and ES3.0 API's) from the official spec, so there is no need to first parse a header file.
-
-
-
-
