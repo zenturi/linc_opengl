@@ -1827,7 +1827,7 @@ extern class GL {
 
 	inline static var GL_IMPLEMENTATION_COLOR_READ_TYPE = 0x8B9A;
 
-	inline static var GL_IMPLEMENTATION_COLOR_READ_FORMAT = 0x8B9B;
+	public inline static var GL_IMPLEMENTATION_COLOR_READ_FORMAT = 0x8B9B;
 
 	inline static var GL_LOW_FLOAT = 0x8DF0;
 
@@ -2893,7 +2893,7 @@ extern class GL {
 	inline static function glGetIntegerv(_pname : Int, _data : Array<Int>) : Void
 		{ return untyped __cpp__("glGetIntegerv({0}, (GLint *)&({1}[0]))", _pname, _data); }
 
-	inline static function glGetString(_name : Int) : Void
+	inline static function glGetString(_name : Int) : cpp.RawPointer<cpp.ConstCharStar>
 		{ return untyped __cpp__("glGetString({0})", _name); }
 
 	inline static function glGetTexImage(_target : Int, _level : Int, _format : Int, _type : Int, _pixels : BytesData) : Void
@@ -3079,8 +3079,8 @@ extern class GL {
 	inline static function glGetBufferParameteriv(_target : Int, _pname : Int, _params : Array<Int>) : Void
 		{ return untyped __cpp__("glGetBufferParameteriv({0}, {1}, (GLint *)&({2}[0]))", _target, _pname, _params); }
 
-	inline static function glGetBufferPointerv(_target : Int, _pname : Int, _params : Void) : Void
-		{ return untyped __cpp__("glGetBufferPointerv({0}, {1}, {2})", _target, _pname, _params); }
+	inline static function glGetBufferPointerv(_target : Int, _pname : Int, _params : cpp.Pointer<Float>) : Void
+		{ return untyped __cpp__("glGetBufferPointerv({0}, {1}, (void**){2}[0])", _target, _pname, _params); }
 
 	inline static function glBlendEquationSeparate(_modeRGB : Int, _modeAlpha : Int) : Void
 		{ return untyped __cpp__("glBlendEquationSeparate({0}, {1})", _modeRGB, _modeAlpha); }
@@ -3660,6 +3660,9 @@ extern class GL {
 
 	inline static function glGetActiveUniformBlockiv(_program : Int, _uniformBlockIndex : Int, _pname : Int, _params : Array<Int>) : Void
 		{ return untyped __cpp__("glGetActiveUniformBlockiv({0}, {1}, {2}, (GLint *)&({3}[0]))", _program, _uniformBlockIndex, _pname, _params); }
+
+	inline static function glGetActiveUniformBlocki(_program : Int, _uniformBlockIndex : Int, _pname : Int) : Void
+		{ return untyped __cpp__("glGetActiveUniformBlocki({0}, {1}, {2})", _program, _uniformBlockIndex, _pname); }
 
 	inline static function glGetActiveUniformBlockName(_program : Int, _uniformBlockIndex : Int, _bufSize : Int, _length : Array<Int>, _uniformBlockName : Array<cpp.UInt8>) : Void
 		{ return untyped __cpp__("glGetActiveUniformBlockName({0}, {1}, {2}, (GLsizei *)&({3}[0]), (GLchar *)&({4}[0]))", _program, _uniformBlockIndex, _bufSize, _length, _uniformBlockName); }

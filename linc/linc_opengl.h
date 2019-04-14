@@ -13,6 +13,7 @@
     #include <OpenGLES/ES2/glext.h>
 #else
     #include "../lib/glew/include/GL/glew.h"
+    #include <GL/glew.h>
 #endif
 
 namespace linc {

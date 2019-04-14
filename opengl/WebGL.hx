@@ -394,6 +394,11 @@ extern class WebGL {
         untyped __cpp__('glCompressedTexImage2D({0}, {1}, {2}, {3}, {4}, {5}, {6}, (GLvoid*)(&{7}->bytes->b[0] + {7}->byteOffset))', target, level, internalformat, width, height, border, data);
     }
 
+    static inline function compressedTexImage3D(target:GLenum, level:Int, internalformat:GLenum, width:Int, height:Int, border:Int, data:ArrayBufferView):Void {
+        force_include;
+        untyped __cpp__('glCompressedTexImage3D({0}, {1}, {2}, {3}, {4}, {5}, {6}, (GLvoid*)(&{7}->bytes->b[0] + {7}->byteOffset))', target, level, internalformat, width, height, border, data);
+    }
+
     static inline function compressedTexSubImage2D(target:GLenum, level:Int, xoffset:Int, yoffset:Int, width:Int, height:Int, format:GLenum, data:ArrayBufferView):Void {
         force_include;
         untyped __cpp__('glCompressedTexSubImage2D({0}, {1}, {2}, {3}, {4}, {5}, {6}, {7}, (GLvoid*)(&{8}->bytes->b[0] + {8}->byteOffset))', target, level, xoffset, yoffset, width, height, format, data.byteLength, data);
